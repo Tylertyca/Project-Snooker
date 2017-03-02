@@ -2690,7 +2690,7 @@ Note: Using raw JNI functions requires advanced knowledge of the Android Java Na
     </member>
     <member name="M:UnityEngine.AnimationClip.EnsureQuaternionContinuity">
       <summary>
-        <para>In order to insure better interpolation of quaternions, call this function after you are finished setting animation curves.</para>
+        <para>Realigns quaternion keys to ensure shortest interpolation paths.</para>
       </summary>
     </member>
     <member name="M:UnityEngine.AnimationClip.SampleAnimation(UnityEngine.GameObject,System.Single)">
@@ -8526,10 +8526,10 @@ The default value is Camera.MonoOrStereoscopicEye.Left, so Camera.MonoOrStereosc
     </member>
     <member name="M:UnityEngine.Canvas.GetETC1SupportedCanvasMaterial">
       <summary>
-        <para>Gets or generates the ETC1 material.</para>
+        <para>Gets or generates the ETC1 Material.</para>
       </summary>
       <returns>
-        <para>The generated ETC1 material from the Canvas.</para>
+        <para>The generated ETC1 Material from the Canvas.</para>
       </returns>
     </member>
     <member name="T:UnityEngine.CanvasGroup">
@@ -8704,7 +8704,7 @@ See Also: CanvasRenderer.EnableRectClipping, CanvasRenderer.DisableRectClipping.
     </member>
     <member name="M:UnityEngine.CanvasRenderer.SetAlphaTexture(UnityEngine.Texture)">
       <summary>
-        <para>The Alpha Texture that will be passed to the shader under the _AlphaTex property.</para>
+        <para>The Alpha Texture that will be passed to the Shader under the _AlphaTex property.</para>
       </summary>
       <param name="texture">The Texture to be passed.</param>
     </member>
@@ -20446,7 +20446,7 @@ GUILayout.MaxHeight, GUILayout.ExpandWidth, GUILayout.ExpandHeight.</param>
     </member>
     <member name="M:UnityEngine.GUIStyle.CalcSize(UnityEngine.GUIContent)">
       <summary>
-        <para>Calculate the size of a some content if it is rendered with this style.</para>
+        <para>Calculate the size of some content if it is rendered with this style.</para>
       </summary>
       <param name="content"></param>
     </member>
@@ -22775,6 +22775,11 @@ Only usable on Android, Windows Phone or Windows Tablets.</para>
     <member name="F:UnityEngine.iOS.DeviceGeneration.iPodTouch5Gen">
       <summary>
         <para>iPod Touch, fifth generation.</para>
+      </summary>
+    </member>
+    <member name="F:UnityEngine.iOS.DeviceGeneration.iPodTouch6Gen">
+      <summary>
+        <para>iPod Touch, sixth generation.</para>
       </summary>
     </member>
     <member name="F:UnityEngine.iOS.DeviceGeneration.iPodTouchUnknown">
@@ -26713,10 +26718,19 @@ Only usable on Android, Windows Phone or Windows Tablets.</para>
     </member>
     <member name="M:UnityEngine.Material.SetBuffer(System.String,UnityEngine.ComputeBuffer)">
       <summary>
-        <para>Set a ComputeBuffer value.</para>
+        <para>Set a named ComputeBuffer value.</para>
       </summary>
-      <param name="propertyName"></param>
-      <param name="buffer"></param>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="name">Property name.</param>
+      <param name="value">ComputeBuffer value to set.</param>
+    </member>
+    <member name="M:UnityEngine.Material.SetBuffer(System.Int32,UnityEngine.ComputeBuffer)">
+      <summary>
+        <para>Set a named ComputeBuffer value.</para>
+      </summary>
+      <param name="nameID">Property name ID, use Shader.PropertyToID to get it.</param>
+      <param name="name">Property name.</param>
+      <param name="value">ComputeBuffer value to set.</param>
     </member>
     <member name="M:UnityEngine.Material.SetColor(System.String,UnityEngine.Color)">
       <summary>
@@ -38116,6 +38130,15 @@ frame. Minimum value is 1 and maximum is 33.</para>
         <para>The starting point of the ray in world space.</para>
       </summary>
     </member>
+    <member name="M:UnityEngine.Ray2D.#ctor(UnityEngine.Vector2,UnityEngine.Vector2)">
+      <summary>
+        <para>Creates a 2D ray starting at origin along direction.</para>
+      </summary>
+      <param name="Vector2">origin</param>
+      <param name="Vector2">direction</param>
+      <param name="origin"></param>
+      <param name="direction"></param>
+    </member>
     <member name="M:UnityEngine.Ray2D.GetPoint(System.Single)">
       <summary>
         <para>Get a point that lies a given distance along a ray.</para>
@@ -39535,11 +39558,6 @@ See Also: ReflectionProbeTimeSlicingMode.</para>
         <para>Shader used for screen-space cascaded shadows.</para>
       </summary>
     </member>
-    <member name="F:UnityEngine.Rendering.BuiltinShaderType.Sprite">
-      <summary>
-        <para>Default shader used by sprites.</para>
-      </summary>
-    </member>
     <member name="T:UnityEngine.Rendering.CameraEvent">
       <summary>
         <para>Defines a place in camera's rendering to attach Rendering.CommandBuffer objects to.</para>
@@ -40651,7 +40669,7 @@ See Also: ReflectionProbe.RenderProbe.</para>
     </member>
     <member name="F:UnityEngine.Rendering.ReflectionProbeRefreshMode.ViaScripting">
       <summary>
-        <para>Using this option indicates that the probe will never be automatically updated by Unity. This is useful if you wish to completely control the probe refresh behavior via scripting.
+        <para>Using this option indicates that the probe will never be automatically updated by Unity while a game is running. This is useful if you wish to completely control the probe refresh behavior via scripting.
 
 See Also: ReflectionProbe.RenderProbe.</para>
       </summary>
@@ -45780,7 +45798,7 @@ Returns NULL if there is no associated alpha texture for the source sprite. This
     </member>
     <member name="P:UnityEngine.SystemInfo.usesReversedZBuffer">
       <summary>
-        <para>Does the current platform use a reversed Z-Buffer (1-&gt;0)? (Read Only)</para>
+        <para>This property is true if the current platform uses a reversed depth buffer (where values range from 1 at the near plane and 0 at far plane), and false if the depth buffer is normal (0 is near, 1 is far). (Read Only)</para>
       </summary>
     </member>
     <member name="M:UnityEngine.SystemInfo.SupportsRenderTextureFormat(UnityEngine.RenderTextureFormat)">
@@ -47942,7 +47960,7 @@ Returns NULL if there is no associated alpha texture for the source sprite. This
     </member>
     <member name="T:UnityEngine.TooltipAttribute">
       <summary>
-        <para>Specify a tooltip for a field.</para>
+        <para>Specify a tooltip for a field in the Inspector window.</para>
       </summary>
     </member>
     <member name="F:UnityEngine.TooltipAttribute.tooltip">
